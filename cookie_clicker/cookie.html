@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Bonbon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <title>Cookie clicker</title>
+</head>
+<body>
+ <h1>The lord Cookie</h1>   
+<P>
+<div class="container">
+    <img src="cookie.png" id="cookie-image" alt= "une image de cookie" >
+    <img src="halo.png" class="rotating" id="halo" alt="HAlo">
+    
+</div>
+
+<p>Nombre de cookies: <span id="cookies">0</span></p>
+<div class="prix">
+    <h4>Prix: 50 cookies:</h4>
+    <button id="button_1" disabled>cookies x 2 </button>
+</div>
+<div class="prix">
+    <h4>Prix: 1000 cookies:</h4>
+    <button id="button_2" disabled>cookies x 4 </button>
+</div>
+<div class="prix">
+    <h4>Prix 4000 cookies:</h4>
+<button id="button_3" disabled>100 cookies par sec </button>
+</div>
+<script
+
+
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<script>
+    var cookiesHTML = $('#cookies');
+    var degres = 0;
+    var cookies = 0;
+    var click = 1;
+    var prix = 50;
+    var prix2 = 1000;
+    var prix3 = 4000;
+    
+
+    /* --- ECOUTEURS --- */
+    $('#cookie-image').click(function() {
+        cookies = cookies + click ;
+        degres = degres + 30;
+        $(this).css("transform", "rotate("+ degres + "deg)");
+        afficherCookies(cookies);
+        verifier();
+    });
+
+    $('#button_1').click(function() {
+        click = click * 2;
+        afficherCookies(cookies);
+        cookies = cookies - prix;
+        afficherCookies(cookies);
+        verifier();
+    });
+    $('#button_2').click(function() {
+        click = click * 4;
+        afficherCookies(cookies);
+        cookies = cookies - prix2;
+        afficherCookies(cookies);
+        verifier();
+    });
+    $('#button_3').click(function() {
+        cookies = cookies - prix3;
+        afficherCookies(cookies);
+        setInterval(function() {
+            cookies = cookies + 100;
+            afficherCookies(cookies);
+            verifier();
+        }, 1000);
+    });
+    /* --- ECOUTEURS --- */
+
+
+    /* FONCTIONS */
+    function afficherCookies(cookies) {
+        cookiesHTML.text(cookies);
+    }
+
+    function verifier() {
+        if (cookies >= 50 ){
+            console.log ("GG");
+            $('#button_1').removeAttr("disabled");
+        } 
+        if (cookies >= 1000){
+            $('#button_2').removeAttr("disabled");
+        }
+        if (cookies < 50){
+            $('#button_1').attr("disabled", true)
+        }
+        if (cookies < 1000){
+            $('#button_2').attr("disabled", true);
+        }
+        if (cookies >= 4000){
+            $('#button_3').removeAttr("disabled");
+            console.log ('Cookie Master!!!')
+        }
+        if (cookies < 4000){
+            $('#button_3').attr("disabled", true);
+        }  
+        if (cookies == 119129114){
+            console.log('Kilian XD')
+        }
+
+    }
+
+</script>
+</body>
+
+</html>
+
+</body>
+</html>
